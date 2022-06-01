@@ -1,6 +1,6 @@
 #library
 library(plyr) #used for rbind.fill.matrix for writing files
-#library(ggplot2)
+library(ggplot2)
 
 #change data set to reflect data set (e.g. csem, bema, fci, etc.)
 data_set <- "fci"
@@ -10,8 +10,8 @@ if (data_set == "csem") {key = c("B","A","B","B","C","E","B","B","B","C","E","D"
 if (data_set == "bema") {key = c("A","A","B","E","A","D","E","B","B","F","E","E","D","B","G","B","D","B","B","G","A","E","E","A","D","D","C","B","C","F","D")} # answer Key for BEMA test
 if (data_set == "fci") {key = c("C","A","C","E","B","B","B","B","C","A","D","B","D","D","A","A","B","B","E","D","E","B","B","A","C","E","C","E","B","C")} # answer Key for FCI test
 
-#Read csv file to import Student Data File. Change C:/path/file.xlsx to import, and run this script.
-Ans0 <- read.csv("C:/Users/david.waters/Desktop/DataExplorerResults/FCI_1-4-2019.csv", header=TRUE) #student Answers, whole file, with blanks, Pre and Post
+#Read csv file to import Student Data File. Change C:/path/file.xlsx to import, and run this script. Data was cleaned using Excel.
+Ans0 <- read.csv("FCI_1-4-2019.csv", header=TRUE) #student Answers, whole file, with blanks, Pre and Post
 
 #Define number of extra columns (n) and numbers of questions (m)
 if (data_set == "csem") {n=4;m=32}    #CSEM-Table1
@@ -405,7 +405,7 @@ AllScores <- c(na.omit(scored.data$prescoresClean),na.omit(scored.data$postscore
 notserious_scores <- c("2 out of 3 tests",notserious_scores_pre,notserious_scores_post,"all 3",notserious_scores_pre3,notserious_scores_post3,"patterns and 1 other",notserious_scores_pre2,notserious_scores_post2)
 #RawDataRows <- rbind.fill.matrix("Unique pre tests",pre_rows_clean,"Unique post tests",post_rows_clean,"pre","patterns",Rows_patterns_pre,"letters",Rows_letters_pre,"50%",Rows_50_zeros_pre,"post","patterns",Rows_patterns_post,"letters",Rows_letters_post,"50%",Rows_50_zeros_post)
 
-#write file
+#write file to save for later
 if (data_set == "csem") {write.csv(scored.data, file="scoreddataCSEM.csv")}
 if (data_set == "bema") {write.csv(scored.data, file="scoreddataBEMA.csv")}
 if (data_set == "fci") {write.csv(scored.data, file="scoreddataFCI.csv")}
